@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -20,6 +22,14 @@ class Realtor(models.Model):
     def __str__(self):
         return self.username
 
+    def tokens(self):
+        '''Return access and refresh tokens'''
+        refresh = RefreshToken.for_user(self)
+        return {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token)
+        }
+
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255, unique=True)
@@ -30,6 +40,14 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def tokens(self):
+        '''Return access and refresh tokens'''
+        refresh = RefreshToken.for_user(self)
+        return {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token)
+        }
 
 class RealEstate(BaseModel):
     id = models.AutoField(primary_key=True)
