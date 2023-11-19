@@ -12,7 +12,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User, RealEstate
 from .models import Realtor
 
-
+# ! sign in (login) serializer
 class SignInSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     email = serializers.EmailField(read_only=True, required=False)
@@ -63,7 +63,7 @@ class SignInSerializer(serializers.Serializer):
             'tokens': user.tokens(),
         }
 
-
+# ! sign up (register) serializer
 class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -130,6 +130,19 @@ class SignUpSerializer(serializers.ModelSerializer):
             'username': user.username,
         }
 
+# ! Update User info [PATCH]
+class UpdateUserSerializer(serializers.Serializer):
+    username = serializers.CharField(required=False)
+    phone_number = serializers.CharField(required=False)
+    email = serializers.EmailField(required=False)
+
+    def update(self, instance, validated_data):
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+        instance.save()
+        return instance
+
+# ! Real Estate Create [POST]
 class RealEstateSerializer(serializers.ModelSerializer):
     class Meta:
         model = RealEstate
@@ -175,3 +188,4 @@ class RealEstateSerializer(serializers.ModelSerializer):
 
         # Create and return the RealEstate instance
         return RealEstate.objects.create(**validated_data)
+

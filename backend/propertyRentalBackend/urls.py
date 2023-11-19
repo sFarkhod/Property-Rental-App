@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from propertyRentalBackend.views import sign_up, login, logout, create_real_estate
+from propertyRentalBackend.views import sign_up, login, logout, create_real_estate, update_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign-up/', sign_up, name='sign-up'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
+    path('update-user/', update_user, name='update-user'),
     path('create-real-estate/', create_real_estate, name='create-real-estate'),
 ]
