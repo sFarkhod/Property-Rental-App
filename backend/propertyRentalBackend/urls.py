@@ -15,19 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework_simplejwt.views import TokenRefreshView
+from django.urls import path
 
-from propertyRentalBackend.views import sign_up_user, sign_up_realtor, login_view, create_real_estate, login_realtor, \
-    logout
+from propertyRentalBackend.views import sign_up, login, logout, create_real_estate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sign-up/user/', sign_up_user, name='sign-up-user'),
-    path('sign-up/realtor/', sign_up_realtor, name='sign-up-realtor'),
-    # path('login/', login_view, name='login'),
-    path('login/user/', login_view, name='login'),
-    path('login/realtor/', login_realtor, name='login-realtor'),
+    path('sign-up/', sign_up, name='sign-up'),
+    path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
-    path('create_real_estate/', create_real_estate, name='create_real_estate'),
+    path('create-real-estate/', create_real_estate, name='create-real-estate'),
 ]
