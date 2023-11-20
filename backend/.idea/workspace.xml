@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/propertyRentalBackend/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
