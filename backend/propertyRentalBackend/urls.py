@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from propertyRentalBackend.views import sign_up, login, logout, create_real_estate, update_user, password_reset_request, \
-    password_reset_confirm
+    password_reset_confirm, list_real_estates, get_real_estate, update_real_estate, delete_real_estate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +32,8 @@ urlpatterns = [
     path('password-reset-confirm/', password_reset_confirm,
          name='password-reset-confirm'),
     path('create-real-estate/', create_real_estate, name='create-real-estate'),
+    path('real-estates/', list_real_estates, name='real-estate-list'),
+    path('real-estate/<int:pk>/', get_real_estate, name='real-estate-detail'),
+    path('real-estates/<int:real_estate_id>/update/', update_real_estate, name='update_real_estate'),
+    path('real-estates/<int:real_estate_id>/delete/', delete_real_estate, name='delete_real_estate'),
 ]
