@@ -1,3 +1,7 @@
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
+from django.utils.crypto import get_random_string
+from django.utils.http import urlsafe_base64_decode
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -5,7 +9,10 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth import login as auth_login, logout as auth_logout
 
-from .serializers import SignInSerializer, SignUpSerializer, RealEstateSerializer, UpdateUserSerializer
+
+from .models import User, PasswordResetToken
+from .serializers import SignInSerializer, SignUpSerializer, RealEstateSerializer, UpdateUserSerializer, \
+    PasswordResetSerializer, RandomNumberSerializer
 
 
 # ! sign up (register)
@@ -44,6 +51,28 @@ def update_user(request):
         if serializer.is_valid():
             serializer.update(request.user, serializer.validated_data)
             return Response({'detail': 'User details updated successfully.'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# ! for sending password reset code
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def password_reset_request(request):
+    if request.method == 'POST':
+        serializer = RandomNumberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def password_reset_confirm(request):
+    if request.method == 'POST':
+
+        serializer = PasswordResetSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'detail': 'Password reset successful.'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # ! real estate create

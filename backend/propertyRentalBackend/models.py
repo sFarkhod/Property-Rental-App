@@ -37,6 +37,12 @@ class Realtor(models.Model):
         return self.user
 
 
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    token = models.CharField(max_length=255, unique=True)
+    random_number = models.CharField(max_length=5, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class RealEstate(BaseModel):
     location = models.CharField(max_length=255)
     hajmi = models.JSONField()

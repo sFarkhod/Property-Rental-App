@@ -7,7 +7,9 @@
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/views.py" afterDir="false" />
     </list>
@@ -26,21 +28,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2YOrGLSNfMMmnQjmQDQH1rC12q6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="backend" />
