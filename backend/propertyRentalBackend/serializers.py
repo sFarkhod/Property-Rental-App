@@ -183,12 +183,6 @@ class PasswordResetSerializer(serializers.Serializer):
         email = self.initial_data.get('email')
         user = User.objects.get(email=email)
 
-        # Check if the entered verification code matches the stored code for the user
-        # if value == user.random_number:
-        #     return value
-        # else:
-        #     raise serializers.ValidationError("Xato kod kiritildi.")
-
         password_reset_token = PasswordResetToken.objects.filter(user=user).order_by('-created_at').first()
         print(password_reset_token.token)
 
@@ -214,11 +208,27 @@ class PasswordResetSerializer(serializers.Serializer):
 
 # ! Real Estate Create [POST]
 class RealEstateSerializer(serializers.ModelSerializer):
+    image1 = serializers.ImageField(required=True)
+    image2 = serializers.ImageField(required=True)
+    image3 = serializers.ImageField(required=True)
+
     class Meta:
         model = RealEstate
         fields = (
-            'location', 'hajmi', 'price', 'rieltor_price', 'description', 'images', 'video', 'title'
+            'location', 'hajmi', 'price', 'rieltor_price', 'description', 'image1', 'image2', 'image3', 'video', 'title'
         )
+
+    def validate_image_count(self, value):
+        if value and len(value) != 3:
+            raise serializers.ValidationError("You must provide exactly 3 images.")
+        return value
+
+    def validate_video(self, value):
+        if value:
+            content_type = value.content_type.split('/')[0].lower()
+            if content_type != 'video':
+                raise serializers.ValidationError("Invalid video file type.")
+        return value
 
     def validate(self, data):
         """
@@ -234,14 +244,16 @@ class RealEstateSerializer(serializers.ModelSerializer):
 
         # Ensure that only Realtors can add RealEstate
         request = self.context.get('request')
-        user = request.user if request and request.user.is_authenticated else None
+        # user = request.user if request and request.user.is_authenticated else None
+        #
+        # if user and user.is_realtor:
+        #     return data
+        # elif not user:
+        #     raise serializers.ValidationError("Iltimos qayta login qiling!")
+        # else:
+        #     raise serializers.ValidationError("Faqat Realtorlar uy qo'sha oladi")
 
-        if user and user.is_realtor:
-            return data
-        elif not user:
-            raise serializers.ValidationError("Iltimos qayta login qiling!")
-        else:
-            raise serializers.ValidationError("Faqat Realtorlar uy qo'sha oladi")
+        return data
 
     def create(self, validated_data):
         """
@@ -256,6 +268,25 @@ class RealEstateSerializer(serializers.ModelSerializer):
         # Set the Realtor for the RealEstate instance
         validated_data['realtor'] = realtor
 
+        # Handle individual image fields
+        image1 = self.context['request'].FILES.get('image1')
+        image2 = self.context['request'].FILES.get('image2')
+        image3 = self.context['request'].FILES.get('image3')
+
+        validated_data['image1'] = image1
+        validated_data['image2'] = image2
+        validated_data['image3'] = image3
+
+        video = self.context['request'].FILES.get('video')
+        if video:
+            validated_data['video'] = video
+
         # Create and return the RealEstate instance
         return RealEstate.objects.create(**validated_data)
+
+# ! Real Estate List [GET]
+class RealEstateListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RealEstate
+        fields = ('id', 'location', 'hajmi', 'price', 'rieltor_price', 'description', 'title', 'image1', 'image2', 'image3', 'video')
 

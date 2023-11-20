@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/propertyRentalBackend/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/views.py" afterDir="false" />
     </list>
@@ -37,12 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/farkhod/Property-Rental-App/backend/propertyRentalBackend"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/propertyRentalBackend" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="backend" />
@@ -84,6 +90,11 @@
           <url>file://$PROJECT_DIR$/main.py</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/propertyRentalBackend/serializers.py</url>
+          <line>250</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
