@@ -1,15 +1,15 @@
+import random
+
 from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password, check_password
-from django.db import models
-from django.db.models import F
-from django.db.models.functions import Concat, Cast
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import User, RealEstate
+from . import settings
+from .models import User, RealEstate, PasswordResetToken
 from .models import Realtor
 
 # ! sign in (login) serializer
@@ -142,6 +142,76 @@ class UpdateUserSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+# ! Password reset
+class RandomNumberSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def send_verification_email(self, user, random_number):
+        subject = 'Verification Code for Password Reset'
+        message = f'Your verification code is: {random_number}'
+        send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email])
+
+    def create(self, validated_data):
+        email = validated_data['email']
+        print(email)
+
+        user = User.objects.filter(email=email).first()
+
+        if not user:
+            raise serializers.ValidationError("Bu emailda foydalanuvchi topilmadi.")
+
+        # Generate a random 5-digit code
+        random_number = str(random.randint(10000, 99999))
+
+        # Save the random number in the database
+        password_reset_token = PasswordResetToken.objects.create(
+            user=user,
+            token=random_number
+        )
+
+        # Send an email with the verification code
+        self.send_verification_email(user, random_number)
+
+        return {'detail': 'Verification code sent successfully.', 'email': email}
+
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    verification_code = serializers.CharField()
+    new_password = serializers.CharField(write_only=True)
+
+    def validate_verification_code(self, value):
+        email = self.initial_data.get('email')
+        user = User.objects.get(email=email)
+
+        # Check if the entered verification code matches the stored code for the user
+        # if value == user.random_number:
+        #     return value
+        # else:
+        #     raise serializers.ValidationError("Xato kod kiritildi.")
+
+        password_reset_token = PasswordResetToken.objects.filter(user=user).order_by('-created_at').first()
+        print(password_reset_token.token)
+
+        if not password_reset_token or value != password_reset_token.token:
+            raise serializers.ValidationError("Xato kod kiritildi.")
+
+        return value
+
+    def create(self, validated_data):
+        email = validated_data['email']
+        new_password = validated_data['new_password']
+        user = User.objects.get(email=email)
+
+        # Update the user's password
+        user.set_password(new_password)
+        user.save()
+
+        # Clear the random number after successful password change
+        user.random_number = None
+        user.save()
+
+        return {'detail': "Parol muvafaqiyatli o'zgartirildi"}
+
 # ! Real Estate Create [POST]
 class RealEstateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -156,11 +226,11 @@ class RealEstateSerializer(serializers.ModelSerializer):
         """
         location = data.get('location')
         if not location:
-            raise serializers.ValidationError("Location field cannot be empty.")
+            raise serializers.ValidationError("Lokatsiya kiritilishi kerak")
 
         description = data.get('description')
         if not description:
-            raise serializers.ValidationError("Description field cannot be empty.")
+            raise serializers.ValidationError("Uy haqida malumot kiritilishi kerak")
 
         # Ensure that only Realtors can add RealEstate
         request = self.context.get('request')

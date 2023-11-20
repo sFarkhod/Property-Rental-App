@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from propertyRentalBackend.views import sign_up, login, logout, create_real_estate, update_user
+from propertyRentalBackend.views import sign_up, login, logout, create_real_estate, update_user, password_reset_request, \
+    password_reset_confirm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,10 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('update-user/', update_user, name='update-user'),
+    path('password-reset-request/', password_reset_request, name='password-reset-request'),
+    # path('password-reset-confirm/<str:uidb64>/<str:random_number>/', password_reset_confirm,
+    #      name='password-reset-confirm'),
+    path('password-reset-confirm/', password_reset_confirm,
+         name='password-reset-confirm'),
     path('create-real-estate/', create_real_estate, name='create-real-estate'),
 ]
