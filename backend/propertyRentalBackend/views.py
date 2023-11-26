@@ -106,7 +106,7 @@ def list_real_estates(request):
         queryset = queryset.filter(title__icontains=title)
 
     # Serialize the filtered data
-    serializer = RealEstateListSerializer(queryset, many=True)
+    serializer = RealEstateListSerializer(queryset, many=True, context={'request': request})
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 # ! real estate by id

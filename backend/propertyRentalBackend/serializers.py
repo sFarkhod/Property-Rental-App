@@ -20,12 +20,20 @@ class SignInSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
     username = serializers.CharField()
     tokens = serializers.SerializerMethodField(read_only=True)
+    is_realtor = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
         fields = (
-            'id', 'email', 'password', 'username', 'tokens', 'permissions'
+            'id', 'email', 'password', 'username', 'tokens', 'permissions', 'is_realtor'
         )
+
+    def get_is_realtor(self, obj):
+        # Check if the user making the request is a realtor
+        request = self.context.get('request')
+        if request and request.user.is_authenticated and hasattr(request.user, 'realtor'):
+            return True
+        return False
 
     def get_tokens(self, obj):
         user = get_object_or_404(User, username=obj.get('username'))
@@ -55,12 +63,15 @@ class SignInSerializer(serializers.Serializer):
             raise AuthenticationFailed(_('Hisob maʼlumotlari notoʻgʻri, qayta urinib koʻring'))
         if not user.is_active:
             raise AuthenticationFailed(_("Hisob o'chirilgan, administrator bilan bog'laning"))
+
+        is_realtor = hasattr(user, 'realtor')
         return {
             'id': user.id,
             'email': user.email,
             'phone_number': user.phone_number,
             'username': user.username,
             'tokens': user.tokens(),
+            'is_realtor': is_realtor,
         }
 
 # ! sign up (register) serializer
@@ -211,10 +222,13 @@ class RealEstateSerializer(serializers.ModelSerializer):
     image1 = serializers.ImageField(required=True)
     image2 = serializers.ImageField(required=True)
     image3 = serializers.ImageField(required=True)
+    created_at = serializers.DateTimeField(read_only=True)
+    modified_at = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = RealEstate
         fields = (
+            'created_at', 'modified_at',
             'location', 'hajmi', 'price', 'rieltor_price', 'description', 'image1', 'image2', 'image3', 'video', 'title'
         )
 
@@ -288,5 +302,6 @@ class RealEstateSerializer(serializers.ModelSerializer):
 class RealEstateListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RealEstate
-        fields = ('id', 'location', 'hajmi', 'price', 'rieltor_price', 'description', 'title', 'image1', 'image2', 'image3', 'video')
+        fields = ('id', 'location', 'hajmi', 'price', 'rieltor_price', 'description',
+                  'title', 'image1', 'image2', 'image3', 'video', 'created_at', 'modified_at', 'realtor')
 

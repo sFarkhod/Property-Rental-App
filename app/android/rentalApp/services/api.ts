@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
-import { SET_TOKEN, setToken } from "../src/redux/actions/authActions";
+import { SET_TOKEN, setIsRealtor, setToken } from "../src/redux/actions/authActions";
 import store from "../src//redux/store";
 
 const baseURL = "https://absolute-initially-slug.ngrok-free.app/";
@@ -20,6 +20,7 @@ export interface LoginResult {
     access: string;
     refresh: string;
   };
+  is_realtor?: boolean;
   errorMessage?: string;
 }
 
@@ -90,10 +91,17 @@ export const loginUser = async (
     } else {
       const responseData = await response.json();
       const { tokens } = responseData;
-      // console.log(tokens)
+      const { is_realtor } = responseData;
+
+      // console.log(is_realtor)
+
+      if (is_realtor !== undefined) {
+        store.dispatch(setIsRealtor(is_realtor));
+      }
+
       if (tokens) {
         store.dispatch(setToken(tokens));
-        return { success: true, tokens };
+        return { success: true, tokens, is_realtor };
       } else {
         throw new Error("Tokens not received in the response");
       }
