@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-t@hwp2z0%b_t^azun+9knxmf@piyjfes0%0!-@&m8*%-%d6dsu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'propertyRentalBackend',
     'drf_yasg',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,9 +55,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'propertyRentalBackend.urls'
+
+CORS_ALLOW_ALL_ORIGINS = True
+# propertyRentalBackend/settings.py
+
+ALLOWED_HOSTS = ['absolute-initially-slug.ngrok-free.app', 'localhost', '127.0.0.1']
+
 
 TEMPLATES = [
     {
@@ -162,6 +170,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'islomabdulloyev410@outlook.com'
 EMAIL_HOST_PASSWORD = 'S126800best'
 FRONTEND_BASE_URL = 'http://127.0.0.1:8000'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Internationalization

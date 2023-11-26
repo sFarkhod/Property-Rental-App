@@ -17,7 +17,7 @@ import { Alert } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 import { loginUser, LoginResult } from '../services/api';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../src/redux/actions/authActions'; 
+import { setIsRealtor, setToken } from '../src/redux/actions/authActions'; 
 
 type LoginType = {
   navigation?: any;
@@ -33,9 +33,11 @@ const LoginScreen: React.FC<LoginType> = ({ navigation }) => {
       const result: LoginResult = await loginUser({ username, password });
 
       if (result.success) {
-        console.log(result.tokens)
+        // console.log(result.tokens)
         // @ts-ignore
         dispatch(setToken(result?.tokens));
+        // @ts-ignore
+        dispatch(setIsRealtor(result?.is_realtor));
         navigation.navigate("Home", { token: result.tokens });
       } else {
         // Handle login failure
