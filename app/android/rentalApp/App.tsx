@@ -20,6 +20,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./components/Home";
 import { Provider } from 'react-redux';
 import store from "./src/redux/store";
+import AddRealEstateScreen from "./components/AddRealEstateScreen";
+import UserProfileScreen from "./components/UserProfile";
+import RealEstateDetail from "./components/RealEstateDetail";
 
 // Define the config
 const config = {
@@ -56,6 +59,21 @@ export default function App() {
             <Stack.Screen
               name="Home"
               component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="AddRealEstate"
+              component={AddRealEstateScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Profile"
+              component={UserProfileScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="RealEstateDetail"
+              component={RealEstateDetail}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

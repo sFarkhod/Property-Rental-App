@@ -5,60 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/src/redux/actions/authActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/src/redux/actions/authActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/src/redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/src/redux/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_05ZOEcP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_1rhM5Je.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_2hv1mfn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_3B8BHGs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_4voOMTc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_6cULYQH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_8Qg1f97.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_AFiytYq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_GgIwO0W.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_KobxY4x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_MYocjxj.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_N56Q2vS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_PoWLoiH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_RdiP1rM.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_W7wEj9M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_WRe60To.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_ZoAsqmW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_bMIAmFv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_enioE7z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_fvVg4jg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_has3dNJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_lCgwBTq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_lYNxiM7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_rpa8PEU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_sCbtwOq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_ttXJPRO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_vXEN4FS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_wI2VcSs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/93736788_xCzKk4d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/migrations/0002_passwordresettoken.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/migrations/0003_alter_realestate_images.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/migrations/0004_remove_realestate_images_realestate_image1_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_5tBBCk6.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_9ildxyZ.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_B2EgGwF.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_CXZxHEd.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_ILxXVBn.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_NJ3bWq0.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos/Screencast_from_10-16-2022_063747_PM_bXZ8aqB.webm" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

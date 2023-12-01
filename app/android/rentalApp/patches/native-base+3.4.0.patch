@@ -1,0 +1,13 @@
+diff --git a/node_modules/native-base/src/core/NativeBaseProvider.tsx b/node_modules/native-base/src/core/NativeBaseProvider.tsx
+index f2fb5d4..d790969 100644
+--- a/node_modules/native-base/src/core/NativeBaseProvider.tsx
++++ b/node_modules/native-base/src/core/NativeBaseProvider.tsx
+@@ -94,7 +94,7 @@ const NativeBaseProvider = (props: NativeBaseProviderProps) => {
+             <OverlayProvider>
+               <ToastProvider>
+                 <InitializeToastRef />
+-                <SSRProvider>{children}</SSRProvider>
++                {children}
+               </ToastProvider>
+             </OverlayProvider>
+           </HybridProvider>
