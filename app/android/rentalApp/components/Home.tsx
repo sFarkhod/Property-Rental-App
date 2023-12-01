@@ -13,9 +13,12 @@ import {
   Skeleton,
   Modal,
   Button,
+  Popover,
 } from "native-base";
 import { Pressable, SafeAreaView, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { Menu } from "native-base";
 
 type HomeType = {
   navigate?: any;
@@ -31,36 +34,41 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [clearOpen, setClearOpen] = useState(false);
+
+  const navigation = useNavigation<any>();
 
   console.log(isRealtor);
 
-  // Fetch real estates based on the user's location
-  useEffect(() => {
-    if (userLocation) {
-      const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/?location=${userLocation}&search=${searchQuery}`;
+  useFocusEffect(
+    React.useCallback(() => {
+      // Fetch real estates based on the user's location
+      if (userLocation) {
+        const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/?location=${userLocation}&search=${searchQuery}`;
 
-      fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setRealEstates(data);
-          setLoading(false);
-          console.log("Real Estates:", data);
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .catch((error) => {
-          setLoading(false);
-          console.error("Error fetching real estates:", error);
-        })
-        .finally(() => {
-          setSubmitted(false);
-        });
-    }
-  }, [userLocation, token, submitted]);
+          .then((response) => response.json())
+          .then((data) => {
+            setRealEstates(data);
+            setLoading(false);
+            console.log("Real Estates:", data);
+          })
+          .catch((error) => {
+            setLoading(false);
+            console.error("Error fetching real estates:", error);
+          })
+          .finally(() => {
+            setSubmitted(false);
+          });
+      }
+    }, [userLocation, token, submitted])
+  );
 
   const handleTabPress = (tab: string) => {
     setSelectedTab(tab);
@@ -76,6 +84,33 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
     setSubmitted(true);
     // Close the modal
     setShowSearchModal(false);
+  };
+
+  const handleAddPress = () => {
+    navigation.navigate("AddRealEstate");
+  };
+
+  const handleLogout = async () => {
+    try {
+      const apiUrl = "https://absolute-initially-slug.ngrok-free.app/logout/";
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Logout successful, redirect to login
+        navigation.navigate("Login");
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
@@ -125,7 +160,44 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
         />
 
         {/* User's Profile Picture */}
-        <Pressable onPress={() => console.log("User Profile clicked")}>
+        <Menu
+          isOpen={clearOpen}
+          onClose={() => setClearOpen(!clearOpen)}
+          placement="bottom"
+          mr={2}
+          mt={1}
+          trigger={(triggerProps) => {
+            return (
+              <Pressable
+                accessibilityLabel="More options menu"
+                {...triggerProps}
+                onPress={() => setClearOpen(true)}
+              >
+                <VStack
+                  ml={2}
+                  mt={4}
+                  style={{
+                    backgroundColor: "#9bdbf9",
+                    borderRadius: 50,
+                    padding: 5,
+                  }}
+                >
+                  <Icon
+                    as={<MaterialIcons name="person" />}
+                    size={5}
+                    color="white"
+                  />
+                </VStack>
+              </Pressable>
+            );
+          }}
+        >
+          <Menu.Item  onPress={() => navigation.navigate("Profile")}>
+            Profile
+          </Menu.Item>
+          <Menu.Item onPress={handleLogout}>Logout</Menu.Item>
+        </Menu>
+        {/* <Pressable onPress={() => navigation.navigate("Profile")}>
           <VStack
             ml={2}
             mt={4}
@@ -137,7 +209,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
           >
             <Icon as={<MaterialIcons name="person" />} size={5} color="white" />
           </VStack>
-        </Pressable>
+        </Pressable> */}
       </View>
 
       {/* Main Content Section */}
@@ -171,7 +243,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
           realEstates?.map((estate: any, index) => (
             <Pressable
               key={index}
-              onPress={() => console.log("Estate clicked", estate)}
+              onPress={() => navigation.navigate("RealEstateDetail", { estate })}
               style={{
                 margin: 16,
                 borderRadius: 8,
@@ -308,7 +380,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
 
         {/* Add Tab */}
         {isRealtor ? (
-          <Pressable onPress={() => console.log("Add clicked")}>
+          <Pressable onPress={() => handleAddPress()}>
             <HStack
               style={{
                 display: "flex",

@@ -305,3 +305,10 @@ class RealEstateListSerializer(serializers.ModelSerializer):
         fields = ('id', 'location', 'hajmi', 'price', 'rieltor_price', 'description',
                   'title', 'image1', 'image2', 'image3', 'video', 'created_at', 'modified_at', 'realtor')
 
+
+# user getting with token
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'phone_number', 'is_realtor')
+

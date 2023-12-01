@@ -14,7 +14,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import User, PasswordResetToken, RealEstate
 from .permissions import IsRealtor
 from .serializers import SignInSerializer, SignUpSerializer, RealEstateSerializer, UpdateUserSerializer, \
-    PasswordResetSerializer, RandomNumberSerializer, RealEstateListSerializer
+    PasswordResetSerializer, RandomNumberSerializer, RealEstateListSerializer, UserSerializer
 
 
 # ! sign up (register)
@@ -148,3 +148,12 @@ def delete_real_estate(request, real_estate_id):
         return Response({'detail': 'Real estate deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
     else:
         return Response({'detail': 'You do not have permission to delete this real estate.'}, status=status.HTTP_403_FORBIDDEN)
+
+
+# getting user with token
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def get_user_data(request):
+    user_serializer = UserSerializer(request.user)
+    return Response(user_serializer.data, status=status.HTTP_200_OK)
