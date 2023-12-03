@@ -23,6 +23,9 @@ import store from "./src/redux/store";
 import AddRealEstateScreen from "./components/AddRealEstateScreen";
 import UserProfileScreen from "./components/UserProfile";
 import RealEstateDetail from "./components/RealEstateDetail";
+import EditRealEstateScreen from "./components/EditRealEstateScreen";
+import PasswordResetRequest from "./components/PasswordResetRequest";
+import PasswordResetConfirmation from "./components/PasswordResetConfirmation";
 
 // Define the config
 const config = {
@@ -74,6 +77,21 @@ export default function App() {
             <Stack.Screen
               name="RealEstateDetail"
               component={RealEstateDetail}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="EditRealEstateScreen"
+              component={EditRealEstateScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PasswordResetRequest"
+              component={PasswordResetRequest}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PasswordResetConfirmation"
+              component={PasswordResetConfirmation}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

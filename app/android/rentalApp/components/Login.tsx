@@ -119,6 +119,7 @@ const LoginScreen: React.FC<LoginType> = ({ navigation }) => {
               }}
               alignSelf="flex-end"
               mt="1"
+              onPress={() => navigation.navigate('PasswordResetRequest')}
             >
               Forget Password?
             </Link>

@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/RealEstateDetail.tsx.save" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propertyRentalBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propertyRentalBackend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/propertyRentalBackend/views.py" afterDir="false" />
     </list>
@@ -98,9 +98,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/propertyRentalBackend/serializers.py</url>
-          <line>261</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/propertyRentalBackend/views.py</url>
+          <line>118</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

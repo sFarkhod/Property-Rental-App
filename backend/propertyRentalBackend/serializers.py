@@ -303,7 +303,10 @@ class RealEstateListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RealEstate
         fields = ('id', 'location', 'hajmi', 'price', 'rieltor_price', 'description',
-                  'title', 'image1', 'image2', 'image3', 'video', 'created_at', 'modified_at', 'realtor')
+                  'title', 'image1', 'image2', 'image3', 'video', 'created_at', 'modified_at', 'realtor', 'liked_users')
+
+        def get_likes(self, obj):
+            return obj.liked_users.count()
 
 
 # user getting with token
