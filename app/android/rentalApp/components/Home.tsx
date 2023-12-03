@@ -15,10 +15,18 @@ import {
   Button,
   Popover,
 } from "native-base";
-import { Pressable, SafeAreaView, ScrollView, View } from "react-native";
+import {
+  Alert,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useSelector } from "react-redux";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Menu } from "native-base";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type HomeType = {
   navigate?: any;
@@ -33,42 +41,115 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
   const [selectedTab, setSelectedTab] = useState("home");
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [realtorId, setRealtorId] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [clearOpen, setClearOpen] = useState(false);
 
+  // for likes
+  const [likedRealEstates, setLikedRealEstates] = useState<any>([]);
+  const [likedOrNot, setLikedOrNot] = useState('false')
+  const [likesCount, setLikesCount] = useState<number>(0);
+
+  
+
   const navigation = useNavigation<any>();
 
-  console.log(isRealtor);
+  const fetchAddedHomes = async () => {
+    try {
+      const apiUrl =
+        "https://absolute-initially-slug.ngrok-free.app/real-estates-for-realtor/";
+
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setRealEstates(data);
+        setLoading(false);
+        // console.log(data?.liked_users)
+        // setLikesCount(data?.liked_users)
+        // console.log("Real Estates for Realtor:", data);
+      } else {
+        setLoading(false);
+        console.error("Error fetching real estates for realtor");
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Error during fetching real estates for realtor:", error);
+    }
+  };
 
   useFocusEffect(
     React.useCallback(() => {
-      // Fetch real estates based on the user's location
-      if (userLocation) {
-        const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/?location=${userLocation}&search=${searchQuery}`;
+      const fetchData = async () => {
+        // Fetch real estates based on the user's location
+        if (userLocation) {
+          setLoading(true);
 
-        fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setRealEstates(data);
-            setLoading(false);
-            console.log("Real Estates:", data);
-          })
-          .catch((error) => {
-            setLoading(false);
-            console.error("Error fetching real estates:", error);
-          })
-          .finally(() => {
-            setSubmitted(false);
-          });
-      }
-    }, [userLocation, token, submitted])
+          if (selectedTab === "myHomes") {
+            // Fetch added homes for realtor
+            await fetchAddedHomes();
+          } else {
+            // Fetch general real estates
+            const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/?location=${userLocation}&search=${searchQuery}&liked_homes=${likedOrNot}`;
+
+            try {
+              const response = await fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+
+              if (response.ok) {
+                const data = await response.json();
+                setRealEstates(data);
+                setLoading(false);
+                console.log("Real Estates:", data);
+              } else {
+                setLoading(false);
+                console.error(
+                  "Error fetching real estates:",
+                  response.statusText
+                );
+              }
+            } catch (error) {
+              setLoading(false);
+              console.error("Error during fetching real estates:", error);
+            }
+          }
+        }
+      };
+
+      fetchData();
+    }, [userLocation, token, searchQuery, selectedTab, realtorId, likedOrNot])
   );
+
+  useEffect(() => {
+    const retrieveLikedRealEstates = async () => {
+      try {
+        const storedLikedRealEstates = await AsyncStorage.getItem(
+          "likedRealEstates"
+        );
+        if (storedLikedRealEstates) {
+          setLikedRealEstates(JSON.parse(storedLikedRealEstates));
+        }
+      } catch (error) {
+        console.error(
+          "Error retrieving likedRealEstates from AsyncStorage:",
+          error
+        );
+      }
+    };
+
+    retrieveLikedRealEstates();
+  }, []);
 
   const handleTabPress = (tab: string) => {
     setSelectedTab(tab);
@@ -88,6 +169,43 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
 
   const handleAddPress = () => {
     navigation.navigate("AddRealEstate");
+  };
+
+  const handleLikeToggle = async (realEstateId: any) => {
+    try {
+      const response = await fetch(
+        `https://absolute-initially-slug.ngrok-free.app/real-estate/${realEstateId}/like/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        // Update the likedRealEstates state based on the response
+        setLikedRealEstates((prevLiked: any) =>
+          prevLiked.includes(realEstateId)
+            ? prevLiked.filter((id: any) => id !== realEstateId)
+            : [...prevLiked, realEstateId]
+        );
+
+        AsyncStorage.setItem(
+          "likedRealEstates",
+          JSON.stringify(
+            likedRealEstates.includes(realEstateId)
+              ? likedRealEstates.filter((id: any) => id !== realEstateId)
+              : [...likedRealEstates, realEstateId]
+          )
+        );
+      } else {
+        console.error("Failed to toggle like status");
+      }
+    } catch (error) {
+      console.error("Error during like toggle:", error);
+    }
   };
 
   const handleLogout = async () => {
@@ -110,6 +228,91 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
       }
     } catch (error) {
       console.error("Error during logout:", error);
+    }
+  };
+
+  const renderRealtorTabs = () => {
+    if (isRealtor) {
+      return (
+        <>
+          {/* Add Tab */}
+          <Pressable
+            onPress={() => {
+              handleAddPress();
+              handleTabPress("home");
+            }}
+          >
+            <HStack
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Icon
+                as={<MaterialIcons name="add" />}
+                size={5}
+                color={selectedTab === "add" ? "#2d68f6" : "#6d6c6f"}
+              />
+              <Text color={selectedTab === "add" ? "#2d68f6" : "#6d6c6f"}>
+                Add
+              </Text>
+            </HStack>
+          </Pressable>
+
+          {/* Added Homes Tab */}
+          <Pressable
+            onPress={() => {
+              handleTabPress("myHomes");
+            }}
+          >
+            <HStack
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Icon
+                as={<MaterialIcons name="home" />}
+                size={5}
+                color={selectedTab === "myHomes" ? "#2d68f6" : "#6d6c6f"}
+              />
+              <Text color={selectedTab === "myHomes" ? "#2d68f6" : "#6d6c6f"}>
+                My Home's
+              </Text>
+            </HStack>
+          </Pressable>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Pressable onPress={() => {
+              handleTabPress("likedHomes");
+              setLikedOrNot('true')
+            }}>
+            <HStack
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Icon
+                as={<MaterialIcons name="favorite" />}
+                size={5}
+                color={selectedTab === "likedHomes" ? "#2d68f6" : "#6d6c6f"}
+              />
+              <Text
+                color={selectedTab === "likedHomes" ? "#2d68f6" : "#6d6c6f"}
+              >
+                Liked Homes
+              </Text>
+            </HStack>
+          </Pressable>
+        </>
+      );
     }
   };
 
@@ -192,7 +395,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
             );
           }}
         >
-          <Menu.Item  onPress={() => navigation.navigate("Profile")}>
+          <Menu.Item onPress={() => navigation.navigate("Profile")}>
             Profile
           </Menu.Item>
           <Menu.Item onPress={handleLogout}>Logout</Menu.Item>
@@ -243,7 +446,9 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
           realEstates?.map((estate: any, index) => (
             <Pressable
               key={index}
-              onPress={() => navigation.navigate("RealEstateDetail", { estate })}
+              onPress={() =>
+                navigation.navigate("RealEstateDetail", { estate })
+              }
               style={{
                 margin: 16,
                 borderRadius: 8,
@@ -317,6 +522,87 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
                     </Text>
                   </HStack>
                 </HStack>
+                <TouchableOpacity
+                  style={{ display: "flex" }}
+                  onPress={() => handleLikeToggle(estate.id)}
+                >
+                  <Icon
+                    as={
+                      <MaterialIcons
+                        name={
+                          // @ts-ignore
+                          likedRealEstates.includes(estate.id)
+                            ? "favorite"
+                            : "favorite-border"
+                        }
+                      />
+                    }
+                    size={18}
+                    color={
+                      // @ts-ignore
+                      likedRealEstates.includes(estate.id)
+                        ? "danger.600"
+                        : "black"
+                    }
+                  />
+                  <Text style={{marginLeft: 4}}>{estate?.liked_users?.length || 0}</Text>
+                </TouchableOpacity>
+                {selectedTab === "myHomes" && (
+                  <HStack
+                    position="absolute"
+                    bottom={4}
+                    right={4}
+                    space={2}
+                    alignItems="center"
+                  >
+                    <Pressable>
+                      <Button
+                        onPress={() => {
+                          navigation.navigate("EditRealEstateScreen", {
+                            home: estate.id,
+                          });
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Pressable>
+                    <Pressable>
+                      <Button
+                        style={{ backgroundColor: "red" }}
+                        onPress={async () => {
+                          try {
+                            const deleteUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/${estate?.id}/delete/`;
+
+                            const deleteResponse = await fetch(deleteUrl, {
+                              method: "DELETE",
+                              headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`,
+                              },
+                            });
+
+                            if (deleteResponse.ok) {
+                              Alert.alert(
+                                "Success",
+                                "Real Estate Deleted Successfully"
+                              );
+                              await fetchAddedHomes();
+                            } else {
+                              console.error(
+                                "Error deleting real estate:",
+                                deleteResponse.statusText
+                              );
+                            }
+                          } catch (error) {
+                            console.error("Error during delete:", error);
+                          }
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </Pressable>
+                  </HStack>
+                )}
               </Stack>
             </Pressable>
           ))
@@ -339,7 +625,10 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
       >
         {/* for selected tab #2d68f6 */}
         {/* Home Tab */}
-        <Pressable onPress={() => handleTabPress("home")}>
+        <Pressable onPress={() => {
+            handleTabPress("home");
+            setLikedOrNot('false');
+          }}>
           <HStack
             style={{
               display: "flex",
@@ -379,28 +668,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
         </Pressable>
 
         {/* Add Tab */}
-        {isRealtor ? (
-          <Pressable onPress={() => handleAddPress()}>
-            <HStack
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Icon
-                as={<MaterialIcons name="add" />}
-                size={5}
-                color={selectedTab === "add" ? "#2d68f6" : "#6d6c6f"}
-              />
-              <Text color={selectedTab === "add" ? "#2d68f6" : "#6d6c6f"}>
-                Add
-              </Text>
-            </HStack>
-          </Pressable>
-        ) : (
-          <></>
-        )}
+        {renderRealtorTabs()}
       </View>
 
       {/* Search Modal */}

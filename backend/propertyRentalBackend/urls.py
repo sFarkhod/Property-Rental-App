@@ -24,7 +24,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from propertyRentalBackend.views import sign_up, login, logout, create_real_estate, update_user, password_reset_request, \
-    password_reset_confirm, list_real_estates, get_real_estate, update_real_estate, delete_real_estate, get_user_data
+    password_reset_confirm, list_real_estates, get_real_estate, update_real_estate, delete_real_estate, get_user_data, \
+    list_real_estates_for_realtor, like_real_estate
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -56,6 +57,8 @@ urlpatterns = [
     path('real-estates/<int:real_estate_id>/update/', update_real_estate, name='update_real_estate'),
     path('real-estates/<int:real_estate_id>/delete/', delete_real_estate, name='delete_real_estate'),
     path('get_user_data/', get_user_data, name='get_user_data'),
+    path('real-estates-for-realtor/', list_real_estates_for_realtor, name='real-estate-list-for-realtor'),
+    path('real-estate/<int:real_estate_id>/like/', like_real_estate, name='like_real_estate'),
 
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

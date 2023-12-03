@@ -97,6 +97,7 @@ def list_real_estates(request):
     # Get query parameters
     location = request.query_params.get('location', None)
     title = request.query_params.get('search', None)
+    liked_homes = request.query_params.get('liked_homes', False)
 
     # Filter real estates based on location and search title
     queryset = RealEstate.objects.all()
@@ -104,6 +105,8 @@ def list_real_estates(request):
         queryset = queryset.filter(location=location)
     if title:
         queryset = queryset.filter(title__icontains=title)
+    if liked_homes.lower() == 'true':
+        queryset = queryset.filter(liked_users=request.user)
 
     # Serialize the filtered data
     serializer = RealEstateListSerializer(queryset, many=True, context={'request': request})
@@ -117,6 +120,7 @@ def get_real_estate(request, pk):
     real_estate = get_object_or_404(RealEstate, pk=pk)
     serializer = RealEstateSerializer(real_estate)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # edit given real estate
 @api_view(['PATCH'])
@@ -145,7 +149,7 @@ def delete_real_estate(request, real_estate_id):
     # Check if the user deleting the real estate is the one who added it
     if request.user == real_estate.realtor.user:
         real_estate.delete()
-        return Response({'detail': 'Real estate deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'detail': 'Real estate deleted successfully.'}, status=status.HTTP_200_OK)
     else:
         return Response({'detail': 'You do not have permission to delete this real estate.'}, status=status.HTTP_403_FORBIDDEN)
 
@@ -157,3 +161,41 @@ def delete_real_estate(request, real_estate_id):
 def get_user_data(request):
     user_serializer = UserSerializer(request.user)
     return Response(user_serializer.data, status=status.HTTP_200_OK)
+
+# list for realtors showing how much real estate they added
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def list_real_estates_for_realtor(request):
+    # Get the logged-in user's realtor instance
+    realtor = getattr(request.user, 'realtor', None)
+
+    # Check if the user is a realtor
+    if not realtor:
+        return Response({'detail': 'You do not have permission to view this list.'}, status=status.HTTP_403_FORBIDDEN)
+
+    # Filter real estates based on the realtor_id
+    queryset = RealEstate.objects.filter(realtor=realtor)
+
+    # Serialize the filtered data
+    serializer = RealEstateListSerializer(queryset, many=True, context={'request': request})
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+# for liking real estate
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([])
+def like_real_estate(request, real_estate_id):
+    user = request.user
+    real_estate = RealEstate.objects.get(id=real_estate_id)
+
+    # Check if the user has already liked the real estate
+    if user in real_estate.liked_users.all():
+        # If yes, unlike
+        real_estate.liked_users.remove(user)
+    else:
+        # If not, like
+        real_estate.liked_users.add(user)
+
+    serializer = RealEstateSerializer(real_estate)
+    return Response(serializer.data, status=status.HTTP_200_OK)

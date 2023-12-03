@@ -11,6 +11,7 @@ import {
   Heading,
   Icon,
   Checkbox,
+  FormControl,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import Toast from "react-native-toast-message";
@@ -268,98 +269,146 @@ const AddRealEstateScreen: React.FC = () => {
             Add Real Estate
           </Heading>
           <VStack space={3} mt="5">
-            <Input
-              value={location}
-              onChangeText={setLocation}
-              placeholder="Location"
-            />
-            {!!locationError && (
-              <Text color="red.500" fontSize="sm">
-                {locationError}
-              </Text>
-            )}
-            <Input value={price} onChangeText={setPrice} placeholder="Price" />
-            {!!priceError && (
-              <Text color="red.500" fontSize="sm">
-                {priceError}
-              </Text>
-            )}
-            <Input
-              value={rieltorPrice}
-              onChangeText={setRieltorPrice}
-              placeholder="Realtor Price"
-            />
-            {!!rieltorPriceError && (
-              <Text color="red.500" fontSize="sm">
-                {rieltorPriceError}
-              </Text>
-            )}
-            <Input
-              value={description}
-              onChangeText={setDescription}
-              placeholder="Description"
-            />
-            {!!descriptionError && (
-              <Text color="red.500" fontSize="sm">
-                {descriptionError}
-              </Text>
-            )}
-            <Input value={title} onChangeText={setTitle} placeholder="Title" />
-            {!!titleError && (
-              <Text color="red.500" fontSize="sm">
-                {titleError}
-              </Text>
-            )}
-            <Input
-              value={hajmi.width}
-              onChangeText={(text) => setHajmi({ ...hajmi, width: text })}
-              placeholder="Width"
-            />
-            {!!hajmiError.width && (
-              <Text color="red.500" fontSize="sm">
-                {hajmiError.width}
-              </Text>
-            )}
-            <Input
-              value={hajmi.height}
-              onChangeText={(text) => setHajmi({ ...hajmi, height: text })}
-              placeholder="Height"
-            />
-            {!!hajmiError.height && (
-              <Text color="red.500" fontSize="sm">
-                {hajmiError.height}
-              </Text>
-            )}
-            <Input
-              value={hajmi.depth}
-              onChangeText={(text) => setHajmi({ ...hajmi, depth: text })}
-              placeholder="Depth"
-            />
-            {!!hajmiError.depth && (
-              <Text color="red.500" fontSize="sm">
-                {hajmiError.depth}
-              </Text>
-            )}
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Location:
+              </FormControl.Label>
+              <Input
+                value={location}
+                onChangeText={setLocation}
+                placeholder="Location"
+              />
+              {!!locationError && (
+                <Text color="red.500" fontSize="sm">
+                  {locationError}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Price:
+              </FormControl.Label>
+              <Input
+                value={price}
+                onChangeText={setPrice}
+                placeholder="Price"
+              />
+              {!!priceError && (
+                <Text color="red.500" fontSize="sm">
+                  {priceError}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Realtor Price:
+              </FormControl.Label>
+              <Input
+                value={rieltorPrice}
+                onChangeText={setRieltorPrice}
+                placeholder="Realtor Price"
+              />
+              {!!rieltorPriceError && (
+                <Text color="red.500" fontSize="sm">
+                  {rieltorPriceError}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Description:
+              </FormControl.Label>
+              <Input
+                value={description}
+                onChangeText={setDescription}
+                placeholder="Description"
+              />
+              {!!descriptionError && (
+                <Text color="red.500" fontSize="sm">
+                  {descriptionError}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Title:
+              </FormControl.Label>
+              <Input
+                value={title}
+                onChangeText={setTitle}
+                placeholder="Title"
+              />
+              {!!titleError && (
+                <Text color="red.500" fontSize="sm">
+                  {titleError}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Width:
+              </FormControl.Label>
+              <Input
+                value={hajmi.width}
+                onChangeText={(text) => setHajmi({ ...hajmi, width: text })}
+                placeholder="Width"
+              />
+              {!!hajmiError.width && (
+                <Text color="red.500" fontSize="sm">
+                  {hajmiError.width}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Height:
+              </FormControl.Label>
+              <Input
+                value={hajmi.height}
+                onChangeText={(text) => setHajmi({ ...hajmi, height: text })}
+                placeholder="Height"
+              />
+              {!!hajmiError.height && (
+                <Text color="red.500" fontSize="sm">
+                  {hajmiError.height}
+                </Text>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormControl.Label _text={{ color: "muted.700", fontSize: "sm" }}>
+                Depth:
+              </FormControl.Label>
+              <Input
+                value={hajmi.depth}
+                onChangeText={(text) => setHajmi({ ...hajmi, depth: text })}
+                placeholder="Depth"
+              />
+              {!!hajmiError.depth && (
+                <Text color="red.500" fontSize="sm">
+                  {hajmiError.depth}
+                </Text>
+              )}
+            </FormControl>
             <Button mt="2" onPress={() => pickImage(1)}>
-              Pick Image 1
+              Pick First Image
             </Button>
             {image1.length != 0 && (
               <Text fontSize="sm" color="green.500">
-                Image 1 selected
+                First Image Selected
               </Text>
             )}
 
-            <Button onPress={() => pickImage(2)}>Pick Image 2</Button>
+            <Button onPress={() => pickImage(2)}>Pick Second Image</Button>
             {image2.length != 0 && (
               <Text fontSize="sm" color="green.500">
-                Image 2 selected
+                Second Image Selected
               </Text>
             )}
 
-            <Button onPress={() => pickImage(3)}>Pick Image 3</Button>
+            <Button onPress={() => pickImage(3)}>Pick Third Image</Button>
             {image3.length != 0 && (
               <Text fontSize="sm" color="green.500">
-                Image 3 selected
+                Third Image Selected
               </Text>
             )}
 
