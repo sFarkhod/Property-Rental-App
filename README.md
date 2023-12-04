@@ -1,7 +1,7 @@
 # Project - Property Rental App
 
 
-Welcome to **Property Rental App**! This guide will help you get started with setting up the environment and running the application locally.
+Welcome to **Property Rental App**! This guide will help you get started with setting up the environment and running the application locally. This app uses **React Native** for mobile and **Django** for Backend
 
 ## Prerequisites
 Before you begin, make sure you have the following installed on your machine:
@@ -28,7 +28,6 @@ Before you begin, make sure you have the following installed on your machine:
    git clone https://github.com/sFarkhod/Property-Rental-App.git
    
    cd Property-Rental-App
-
 1. **Take all the necessary environmental variables to .env file:**
     - For testing purposes we use all the information such as api keys, secret key for db, secret key for jwt decoding etc without hiding them. We recommend you to hide all the important information before start. 
 
