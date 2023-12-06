@@ -21,6 +21,7 @@ import * as DocumentPicker from "expo-document-picker";
 import { useSelector } from "react-redux";
 import { Alert } from "react-native";
 import { View } from "native-base";
+import { BASE_URL } from '@env';
 
 const AddRealEstateScreen: React.FC = () => {
   const [location, setLocation] = useState("");
@@ -190,7 +191,7 @@ const AddRealEstateScreen: React.FC = () => {
         setIsSubmitting(true);
         // Make the request here
         const response = await fetch(
-          "https://absolute-initially-slug.ngrok-free.app/create-real-estate/",
+          `${BASE_URL}create-real-estate/`,
           {
             method: "POST",
             headers: {

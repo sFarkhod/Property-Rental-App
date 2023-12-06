@@ -1,6 +1,8 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { View, Text, Input, Button } from "native-base";
+import { BASE_URL } from '@env';
 
 const UserProfileScreen: React.FC = () => {
   const token = useSelector((state: any) => state.auth.access);
@@ -13,7 +15,7 @@ const UserProfileScreen: React.FC = () => {
 
   useEffect(() => {
     // Fetch user data based on the token
-    fetch("https://absolute-initially-slug.ngrok-free.app/get_user_data/", {
+    fetch(`${BASE_URL}get_user_data/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ const UserProfileScreen: React.FC = () => {
 
   const handleSave = () => {
     // Perform API request to update user data
-    fetch("https://absolute-initially-slug.ngrok-free.app/update-user/", {
+    fetch(`${BASE_URL}update-user/`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -21,6 +21,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Video } from "expo-av";
 import { usePlaybackStatus } from "expo-av";
+import { BASE_URL } from '@env';
 
 const ImageIndicator = ({ totalImages, currentIndex }) => {
   return (
@@ -54,17 +55,17 @@ const RealEstateDetail = ({ route }) => {
 
   const images = [
     {
-      uri: `https://absolute-initially-slug.ngrok-free.app/media/images/${getImagePath(
+      uri: `${BASE_URL}media/images/${getImagePath(
         estate.image1
       )}`,
     },
     {
-      uri: `https://absolute-initially-slug.ngrok-free.app/media/images/${getImagePath(
+      uri: `${BASE_URL}media/images/${getImagePath(
         estate.image2
       )}`,
     },
     {
-      uri: `https://absolute-initially-slug.ngrok-free.app/media/images/${getImagePath(
+      uri: `${BASE_URL}media/images/${getImagePath(
         estate.image3
       )}`,
     },

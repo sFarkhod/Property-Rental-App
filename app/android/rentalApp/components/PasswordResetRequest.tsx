@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import {
   FormControl,
@@ -15,6 +16,7 @@ import {
 } from "native-base";
 import { Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { BASE_URL } from '@env';
 
 type PasswordReqeustType = {
   navigation?: any;
@@ -33,8 +35,7 @@ const PasswordResetRequest: React.FC<PasswordReqeustType> = ({
         return;
       }
 
-      const apiUrl =
-        "https://absolute-initially-slug.ngrok-free.app/password-reset-request/";
+      const apiUrl = `${BASE_URL}password-reset-request/`;
 
       const requestData = {
         method: "POST",
@@ -52,7 +53,7 @@ const PasswordResetRequest: React.FC<PasswordReqeustType> = ({
         const errorData = await response.json();
 
         if (response.status === 400 && errorData) {
-          console.log(errorData)
+          console.log(errorData);
           // const errors = Object.entries(errorData).map(
           //   // @ts-ignore
           //   ([key, value]) => `${key}: ${value.join(", ")}`
@@ -65,7 +66,7 @@ const PasswordResetRequest: React.FC<PasswordReqeustType> = ({
 
       const responseData = await response.json();
 
-      navigation.navigate('PasswordResetConfirmation', {email: email});
+      navigation.navigate("PasswordResetConfirmation", { email: email });
     } catch (error) {
       // @ts-ignore
       // console.error("Password Reset Request Failed:", error.message);
