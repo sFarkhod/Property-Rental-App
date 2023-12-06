@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import {
   FormControl,
@@ -17,13 +18,14 @@ import { Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { PinInput } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { BASE_URL } from "@env";
 
 type PasswordReqeustType = {
   route?: any;
 };
 
 const PasswordResetConfirmation: React.FC<PasswordReqeustType> = ({
-  route
+  route,
 }) => {
   const [verificationCode, setVerificationCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -40,9 +42,7 @@ const PasswordResetConfirmation: React.FC<PasswordReqeustType> = ({
     }
 
     try {
-      const apiUrl =
-        "https://absolute-initially-slug.ngrok-free.app/password-reset-confirm/";
-
+      const apiUrl = `${BASE_URL}password-reset-confirm/`;
       const requestData = {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ const PasswordResetConfirmation: React.FC<PasswordReqeustType> = ({
         const errorData = await response.json();
 
         if (response.status === 400 && errorData) {
-          console.log(errorData)
+          console.log(errorData);
           const errors = Object.entries(errorData).map(
             // @ts-ignore
             ([key, value]) => `${key}: ${value.join(", ")}`
@@ -115,7 +115,7 @@ const PasswordResetConfirmation: React.FC<PasswordReqeustType> = ({
             <FormControl.Label>OTP: </FormControl.Label>
             <PinInput
               value={verificationCode}
-              onChange={(value:any) => setVerificationCode(value)}
+              onChange={(value: any) => setVerificationCode(value)}
             >
               <PinInput.Field />
               <PinInput.Field />

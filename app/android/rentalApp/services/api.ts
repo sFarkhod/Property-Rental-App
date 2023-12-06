@@ -1,10 +1,12 @@
+// @ts-nocheck
 import { useState } from "react";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
 import { SET_TOKEN, setIsRealtor, setToken } from "../src/redux/actions/authActions";
 import store from "../src//redux/store";
+import { BASE_URL } from '@env';
 
-const baseURL = "https://absolute-initially-slug.ngrok-free.app/";
+const baseURL = BASE_URL;
 
 interface RegisterUserData {
   username?: string;

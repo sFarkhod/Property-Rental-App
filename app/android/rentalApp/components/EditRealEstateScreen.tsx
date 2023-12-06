@@ -20,6 +20,7 @@ import * as DocumentPicker from "expo-document-picker";
 import { Video } from "expo-av";
 import { Alert } from "react-native";
 import { FormControl } from "native-base";
+import { BASE_URL } from '@env';
 
 const EditRealEstateScreen: React.FC = ({ route }) => {
   const { home } = route.params;
@@ -43,7 +44,7 @@ const EditRealEstateScreen: React.FC = ({ route }) => {
   useEffect(() => {
     const fetchRealEstateData = async () => {
       try {
-        const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estate/${home}/`;
+        const apiUrl = `${BASE_URL}real-estate/${home}/`;
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
@@ -62,22 +63,22 @@ const EditRealEstateScreen: React.FC = ({ route }) => {
           setTitle(data.title);
           setHajmi(data.hajmi);
           setImage(
-            `https://absolute-initially-slug.ngrok-free.app${data.image1}`
+            `${BASE_URL}${data.image1}`
           );
           setImage2(
-            `https://absolute-initially-slug.ngrok-free.app${data.image2}`
+            `${BASE_URL}${data.image2}`
           );
           setImage3(
-            `https://absolute-initially-slug.ngrok-free.app${data.image3}`
+            `${BASE_URL}${data.image3}`
           );
           if (data.video) {
             setVideo1(
-              `https://absolute-initially-slug.ngrok-free.app${data?.video}`
+              `${BASE_URL}${data?.video}`
             );
           }
-          console.log(
-            `https://absolute-initially-slug.ngrok-free.app${data.video}`
-          );
+          // console.log(
+          //   `https://absolute-initially-slug.ngrok-free.app${data.video}`
+          // );
         } else {
           console.error(
             "Error fetching real estate data:",
@@ -156,7 +157,7 @@ const EditRealEstateScreen: React.FC = ({ route }) => {
     try {
       setIsSubmitting(true);
       const updateResponse = await fetch(
-        `https://absolute-initially-slug.ngrok-free.app/real-estates/${home}/update/`,
+        `${BASE_URL}real-estates/${home}/update/`,
         {
           method: "PATCH",
           headers: {

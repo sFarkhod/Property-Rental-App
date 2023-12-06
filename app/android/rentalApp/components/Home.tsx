@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import {
@@ -27,6 +28,7 @@ import { useSelector } from "react-redux";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Menu } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_URL } from '@env';
 
 type HomeType = {
   navigate?: any;
@@ -57,7 +59,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
   const fetchAddedHomes = async () => {
     try {
       const apiUrl =
-        "https://absolute-initially-slug.ngrok-free.app/real-estates-for-realtor/";
+        `${BASE_URL}real-estates-for-realtor/`;
 
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -96,7 +98,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
             await fetchAddedHomes();
           } else {
             // Fetch general real estates
-            const apiUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/?location=${userLocation}&search=${searchQuery}&liked_homes=${likedOrNot}`;
+            const apiUrl = `${BASE_URL}real-estates/?location=${userLocation}&search=${searchQuery}&liked_homes=${likedOrNot}`;
 
             try {
               const response = await fetch(apiUrl, {
@@ -174,7 +176,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
   const handleLikeToggle = async (realEstateId: any) => {
     try {
       const response = await fetch(
-        `https://absolute-initially-slug.ngrok-free.app/real-estate/${realEstateId}/like/`,
+        `${BASE_URL}real-estate/${realEstateId}/like/`,
         {
           method: "POST",
           headers: {
@@ -210,7 +212,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
 
   const handleLogout = async () => {
     try {
-      const apiUrl = "https://absolute-initially-slug.ngrok-free.app/logout/";
+      const apiUrl = `${BASE_URL}/logout/`;
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -462,7 +464,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
               <View style={{ position: "relative" }}>
                 <Image
                   source={{
-                    uri: `https://absolute-initially-slug.ngrok-free.app/media/images/${getImagePath(
+                    uri: `${BASE_URL}media/images/${getImagePath(
                       estate.image1
                     )}`,
                   }}
@@ -571,7 +573,7 @@ const HomeScreen: React.FC<HomeType> = ({ navigate }) => {
                         style={{ backgroundColor: "red" }}
                         onPress={async () => {
                           try {
-                            const deleteUrl = `https://absolute-initially-slug.ngrok-free.app/real-estates/${estate?.id}/delete/`;
+                            const deleteUrl = `${BASE_URL}real-estates/${estate?.id}/delete/`;
 
                             const deleteResponse = await fetch(deleteUrl, {
                               method: "DELETE",

@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/AddRealEstateScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/AddRealEstateScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/EditRealEstateScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/EditRealEstateScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetConfirmation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetConfirmation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetRequest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/RealEstateDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/RealEstateDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/UserProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +47,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/farkhod/Property-Rental-App/backend/propertyRentalBackend&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/farkhod/Property-Rental-App/backend",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/propertyRentalBackend" />
