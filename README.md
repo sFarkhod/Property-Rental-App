@@ -28,8 +28,14 @@ Before you begin, make sure you have the following installed on your machine:
    git clone https://github.com/sFarkhod/Property-Rental-App.git
    
    cd Property-Rental-App
-1. **Take all the necessary environmental variables to .env file:**
-    - For testing purposes we use all the information such as api keys, secret key for db, secret key for jwt decoding etc without hiding them. We recommend you to hide all the important information before start. 
+2. **Copy Environment Variables:**
+    - Look for the env.local file in the android app project's root directory.
+    - Open the env.local file and copy the environment variable definitions.
+3. **Create .env File:**
+   - In the android app project's root directory, create a new file named .env.
+    - Paste the copied environment variable definitions into the .env file. Basically there is one variable that holds the url for backend as we use ngrok you would find ngrok's url you should change it to your desired url that you can use (server or ngrok or any tunneling app such as jprq or etc) 
+4. **Take all the necessary environmental variables to .env file:**
+    - For testing purposes we use all the information in backend such as api keys, secret key for db, secret key for jwt decoding etc without hiding them. We recommend you to hide all the important information before start. 
 
 ## Running the Application
 
@@ -69,8 +75,8 @@ Before you begin, make sure you have the following installed on your machine:
 ## Suggestions
 1. **Use NGROK for local testing api:**
    - we use Ngrok for testing local api and we strongly recommend you too. It make work easier and watching your requests. Only pros it got that you need a strong internet.
-2. **Change all the api links in the React Native:**
-   - we use Ngrok Static Link for the application in the React Native app if you want to use Ngrok(or whatever service or server or hosting you want) you need to change the url to your desired url.
+2. **Change api links in the React Native:**
+   - we use Ngrok Static Link for the application in the React Native app if you want to use Ngrok(or whatever service or server or hosting you want) you need to change the url to your desired url in the .env file.
 3. **Backend Documentation:**
    - You can check the api documentation in the swagger as well. You can access it after running the application in the following url http://localhost:8000/swagger/
 
