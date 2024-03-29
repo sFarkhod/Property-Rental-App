@@ -5,21 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b44dbe8a-cc78-4bb6-88c7-1606b074a181" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/AddRealEstateScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/AddRealEstateScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/EditRealEstateScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/EditRealEstateScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetConfirmation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetConfirmation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/PasswordResetRequest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/RealEstateDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/RealEstateDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/components/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/components/UserProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../app/android/rentalApp/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -63,6 +48,7 @@
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="backend" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -82,6 +68,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-7a29c1521ef0-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.298" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
