@@ -79,14 +79,4 @@ Before you begin, make sure you have the following installed on your machine:
    - we use Ngrok Static Link for the application in the React Native app if you want to use Ngrok(or whatever service or server or hosting you want) you need to change the url to your desired url in the .env file.
 3. **Backend Documentation:**
    - You can check the api documentation in the swagger as well. You can access it after running the application in the following url http://localhost:8000/swagger/
-
-
-## MEMBERS 
-
-We have 4 members which would do specific part of an application
-
-- Sokhibov Farkhod - SE12805
-- Umarov Boburjon - SE12087
-- Asilbek Mamatov - SE13982
-- Nargiza Qaxramanova - SE12740
   
